@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/pandaImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:scaleType="fitCenter"
+            android:tint="@color/accent" />
+
+        <TextView
+            android:id="@+id/pandaName"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:background="?android:selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
