@@ -41,7 +41,8 @@ public class RecyclerViewFragment extends Fragment {
 
 
     private OnFragmentInteractionListener mListener;
-    private PhotoAdapter mPhotos;
+    protected PhotoAdapter mPhotos;
+    protected LinearLayoutManager mLinearLayoutManager;
 
     public RecyclerViewFragment() {
         // Required empty public constructor
@@ -53,7 +54,6 @@ public class RecyclerViewFragment extends Fragment {
      *
      * @return A new instance of fragment RecyclerViewFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static RecyclerViewFragment newInstance() {
         RecyclerViewFragment fragment = new RecyclerViewFragment();
         return fragment;
@@ -67,9 +67,11 @@ public class RecyclerViewFragment extends Fragment {
 
         ButterKnife.inject(this, rootView);
 
+        mLinearLayoutManager = new LinearLayoutManager(getActivity());
 
-        mList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mList.setLayoutManager(mLinearLayoutManager);
         mList.setItemAnimator(new DefaultItemAnimator());
+
 
         mPhotos = new PhotoAdapter(new ArrayList<Photo>(), getActivity());
 

@@ -1,15 +1,38 @@
+import java.text.SimpleDateFormat
+
 apply plugin: 'com.android.application'
+
+
+def versionMajor = 0
+def versionMinor = 1
+def versionPatch = 0
+def versionBuild = 0 // bump for dogfood builds, public betas, etc.
+
+def buildTime() {
+    def df = new SimpleDateFormat("dd-MM-yyyy HH:mm")
+    df.setTimeZone(TimeZone.getTimeZone("UTC+01:00"))
+    return df.format(new Date())
+}
+
+def getBuildNumber() {
+    return System.getenv("BUILD_NUMBER") as Integer ?: 0
+}
+
 
 android {
     compileSdkVersion 21
-    buildToolsVersion "21.0.1"
+    buildToolsVersion "21.0.2"
+
 
     defaultConfig {
         applicationId "s3xy.de.android_lsamples"
         minSdkVersion 16
         targetSdkVersion 21
-        versionCode 1
-        versionName "1.0"
+
+
+        versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild + getBuildNumber()
+        versionName "${buildTime()} V${versionMajor}.${versionMinor}.${versionPatch}"
+
     }
 
     signingConfigs {

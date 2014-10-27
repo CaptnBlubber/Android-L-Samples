@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import s3xy.de.android_lsamples.R;
+import s3xy.de.android_lsamples.ui.fragments.HorizontalRecyclerViewFragment;
 import s3xy.de.android_lsamples.ui.fragments.RecyclerViewFragment;
 
 
@@ -41,7 +42,7 @@ public class MyActivity extends ActionBarActivity implements RecyclerViewFragmen
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        getFragmentManager().beginTransaction().replace(R.id.content_frame, RecyclerViewFragment.newInstance(), RecyclerViewFragment.TAG).commit();
+        getFragmentManager().beginTransaction().replace(R.id.content_frame, HorizontalRecyclerViewFragment.newInstance(), RecyclerViewFragment.TAG).commit();
 
     }
 
