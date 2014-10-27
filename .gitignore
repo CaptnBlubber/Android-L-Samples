@@ -1,6 +1,7 @@
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
 
 build/
+.gradle/
 
 *.iml
 local.properties

@@ -11,21 +11,26 @@ android {
         versionCode 1
         versionName "1.0"
     }
-//
-//    signingConfigs {
-//        release {
-//            storeFile file(System.getenv("KEYSTORE") ?: 'key.keystore')
-//            storePassword System.getenv("KEYSTORE_PASSWORD" ?: 'default')
-//            keyAlias System.getenv("KEY_ALIAS" ?: 'default')
-//            keyPassword System.getenv("KEY_PASSWORD" ?: 'default')
-//        }
-//    }
+
+    signingConfigs {
+        release {
+            storeFile file(System.getenv("KEYSTORE") ?: 'key.keystore')
+            storePassword System.getenv("KEYSTORE_PASSWORD" ?: 'default')
+            keyAlias System.getenv("KEY_ALIAS" ?: 'default')
+            keyPassword System.getenv("KEY_PASSWORD" ?: 'default')
+        }
+    }
+
+    lintOptions {
+        lintConfig file("custom-lint.xml")
+    }
+
 
     buildTypes {
         release {
             runProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            //signingConfig signingConfigs.release
+            signingConfig signingConfigs.release
         }
     }
 }
