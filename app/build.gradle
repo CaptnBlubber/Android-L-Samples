@@ -11,21 +11,21 @@ android {
         versionCode 1
         versionName "1.0"
     }
-
-    signingConfigs {
-        release {
-            storeFile file(System.getenv("KEYSTORE") ?: 'key.keystore')
-            storePassword System.getenv("KEYSTORE_PASSWORD" ?: 'default')
-            keyAlias System.getenv("KEY_ALIAS" ?: 'default')
-            keyPassword System.getenv("KEY_PASSWORD" ?: 'default')
-        }
-    }
+//
+//    signingConfigs {
+//        release {
+//            storeFile file(System.getenv("KEYSTORE") ?: 'key.keystore')
+//            storePassword System.getenv("KEYSTORE_PASSWORD" ?: 'default')
+//            keyAlias System.getenv("KEY_ALIAS" ?: 'default')
+//            keyPassword System.getenv("KEY_PASSWORD" ?: 'default')
+//        }
+//    }
 
     buildTypes {
         release {
             runProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+            //signingConfig signingConfigs.release
         }
     }
 }
@@ -44,5 +44,13 @@ dependencies {
     compile "com.android.support:appcompat-v7:21.0.0"
 
     compile 'com.jakewharton:butterknife:5.1.2'
+
+    compile 'com.google.code.gson:gson:2.3'
+    compile 'com.squareup.retrofit:retrofit:1.6.1'
+    compile 'com.squareup.okhttp:okhttp:2.0.0'
+    compile 'com.squareup.okio:okio:1.0.0'
+    compile 'com.squareup.okhttp:okhttp-urlconnection:2.0.0'
+    compile 'com.squareup.picasso:picasso:2.3.4'
+
 
 }

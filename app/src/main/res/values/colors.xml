@@ -5,4 +5,5 @@
     <color name="accent">#ffc400</color>
     <color name="text_primary">#D9FFFFFF</color>
     <color name="text_secondary">#D9000000</color>
+    <color name="photo_tint">#88101010</color>
 </resources>

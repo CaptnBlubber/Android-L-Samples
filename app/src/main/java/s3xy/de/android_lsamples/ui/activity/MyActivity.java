@@ -1,7 +1,6 @@
 package s3xy.de.android_lsamples.ui.activity;
 
 import android.content.res.Configuration;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -42,7 +41,7 @@ public class MyActivity extends ActionBarActivity implements RecyclerViewFragmen
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        getFragmentManager().beginTransaction().add(R.id.content_frame, RecyclerViewFragment.newInstance(null, null)).commit();
+        getFragmentManager().beginTransaction().replace(R.id.content_frame, RecyclerViewFragment.newInstance(), RecyclerViewFragment.TAG).commit();
 
     }
 
@@ -67,7 +66,7 @@ public class MyActivity extends ActionBarActivity implements RecyclerViewFragmen
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void onFragmentInteraction(String id) {
 
     }
 }

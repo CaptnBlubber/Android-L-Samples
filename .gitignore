@@ -3,6 +3,7 @@
 build/
 
 *.iml
+local.properties
 
 ## Directory-based project format:
 #.idea/

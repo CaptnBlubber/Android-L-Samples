@@ -15,9 +15,14 @@ import java.util.ArrayList;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 import s3xy.de.android_lsamples.R;
-import s3xy.de.android_lsamples.adapter.PandaAdapter;
-import s3xy.de.android_lsamples.model.Panda;
+import s3xy.de.android_lsamples.adapter.PhotoAdapter;
+import s3xy.de.android_lsamples.api.SampleClient;
+import s3xy.de.android_lsamples.api.model.Photo;
+import s3xy.de.android_lsamples.api.model.SearchResult;
 
 
 /**
@@ -29,18 +34,14 @@ import s3xy.de.android_lsamples.model.Panda;
  * create an instance of this fragment.
  */
 public class RecyclerViewFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    public static final String TAG = "RecyclerViewFragment";
+
     @InjectView(R.id.list)
     RecyclerView mList;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private PhotoAdapter mPhotos;
 
     public RecyclerViewFragment() {
         // Required empty public constructor
@@ -50,28 +51,12 @@ public class RecyclerViewFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment RecyclerViewFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static RecyclerViewFragment newInstance(String param1, String param2) {
+    public static RecyclerViewFragment newInstance() {
         RecyclerViewFragment fragment = new RecyclerViewFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-
     }
 
     @Override
@@ -82,29 +67,38 @@ public class RecyclerViewFragment extends Fragment {
 
         ButterKnife.inject(this, rootView);
 
+
         mList.setLayoutManager(new LinearLayoutManager(getActivity()));
         mList.setItemAnimator(new DefaultItemAnimator());
 
-        ArrayList<Panda> pandas = new ArrayList<Panda>();
+        mPhotos = new PhotoAdapter(new ArrayList<Photo>(), getActivity());
 
-        Panda p = new Panda();
-        p.setName("Foooooo");
-
-        pandas.add(p);
-        pandas.add(p);
-        pandas.add(p);
-        pandas.add(p);
-        pandas.add(p);
-
-        mList.setAdapter(new PandaAdapter(pandas, getActivity()));
+        mList.setAdapter(mPhotos);
 
         return rootView;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        SampleClient.getFlickrApiClient(getActivity()).getSearchResults("sunset", new Callback<SearchResult>() {
+            @Override
+            public void success(SearchResult searchResult, Response response) {
+                mPhotos.getPhotos().addAll(searchResult.getPhotos().getPhoto());
+                mPhotos.notifyDataSetChanged();
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+
+            }
+        });
+    }
+
+    public void onCardPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onFragmentInteraction("");
         }
     }
 
@@ -142,8 +136,7 @@ public class RecyclerViewFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
+        public void onFragmentInteraction(String id);
     }
 
 }
