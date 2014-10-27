@@ -13,7 +13,6 @@ import butterknife.ButterKnife;
 import s3xy.de.android_lsamples.R;
 import s3xy.de.android_lsamples.adapter.PhotoAdapter;
 import s3xy.de.android_lsamples.api.model.Photo;
-import s3xy.de.android_lsamples.ui.animation.AwsumAnimator;
 
 
 /**

@@ -8,17 +8,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        android:orientation="vertical"/>
+        android:orientation="vertical" />
 
-    <ListView
-        android:id="@+id/leftDrawer"
-        android:layout_width="290dp"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/left_drawer"
+        android:layout_width="240dp"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
+        android:layout_gravity="left|start"
         android:background="#fff"
         android:choiceMode="singleChoice"
-        android:clickable="true"
-        android:divider="@null"
-        android:dividerHeight="0dp"
-        android:scrollbars="none" />
+        android:scrollbars="vertical" />
+
 </android.support.v4.widget.DrawerLayout>
