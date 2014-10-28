@@ -9,6 +9,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import s3xy.de.android_lsamples.R;
+import s3xy.de.android_lsamples.interfaces.OnItemClickListener;
 
 /**
  * Noodlesoup
@@ -48,12 +49,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         return mDataset.size();
     }
 
-    /**
-     * Interface for receiving click events from cells.
-     */
-    public interface OnItemClickListener {
-        public void onClick(View view, int position);
-    }
 
     /**
      * Custom viewholder for our planet views.

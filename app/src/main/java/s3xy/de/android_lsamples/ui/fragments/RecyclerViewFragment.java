@@ -2,7 +2,6 @@ package s3xy.de.android_lsamples.ui.fragments;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,6 +22,7 @@ import s3xy.de.android_lsamples.adapter.PhotoAdapter;
 import s3xy.de.android_lsamples.api.SampleClient;
 import s3xy.de.android_lsamples.api.model.Photo;
 import s3xy.de.android_lsamples.api.model.SearchResult;
+import s3xy.de.android_lsamples.interfaces.OnItemClickListener;
 
 
 /**
@@ -33,16 +33,13 @@ import s3xy.de.android_lsamples.api.model.SearchResult;
  * Use the {@link s3xy.de.android_lsamples.ui.fragments.RecyclerViewFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RecyclerViewFragment extends Fragment {
+public class RecyclerViewFragment extends Fragment implements OnItemClickListener {
     public static final String TAG = "RecyclerViewFragment";
-
-    @InjectView(R.id.list)
-    RecyclerView mList;
-
-
-    private OnFragmentInteractionListener mListener;
     protected PhotoAdapter mPhotos;
     protected LinearLayoutManager mLinearLayoutManager;
+    @InjectView(R.id.list)
+    RecyclerView mList;
+    private OnFragmentInteractionListener mListener;
 
     public RecyclerViewFragment() {
         // Required empty public constructor
@@ -73,7 +70,7 @@ public class RecyclerViewFragment extends Fragment {
         mList.setItemAnimator(new DefaultItemAnimator());
 
 
-        mPhotos = new PhotoAdapter(new ArrayList<Photo>(), getActivity());
+        mPhotos = new PhotoAdapter(new ArrayList<Photo>(), getActivity(), this);
 
         mList.setAdapter(mPhotos);
 
@@ -98,9 +95,10 @@ public class RecyclerViewFragment extends Fragment {
         });
     }
 
-    public void onCardPressed(Uri uri) {
+    @Override
+    public void onClick(View view, int position) {
         if (mListener != null) {
-            mListener.onFragmentInteraction("");
+            mListener.onFragmentInteraction(view, mPhotos.getPhotos().get(position));
         }
     }
 
@@ -138,7 +136,7 @@ public class RecyclerViewFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        public void onFragmentInteraction(String id);
+        public void onFragmentInteraction(View triggeringView, Photo p);
     }
 
 }

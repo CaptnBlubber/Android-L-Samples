@@ -1,8 +1,11 @@
 package s3xy.de.android_lsamples.ui.activity;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -19,11 +22,13 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import s3xy.de.android_lsamples.R;
 import s3xy.de.android_lsamples.adapter.MenuAdapter;
+import s3xy.de.android_lsamples.api.model.Photo;
+import s3xy.de.android_lsamples.interfaces.OnItemClickListener;
 import s3xy.de.android_lsamples.ui.fragments.HorizontalRecyclerViewFragment;
 import s3xy.de.android_lsamples.ui.fragments.RecyclerViewFragment;
 
 
-public class MyActivity extends ActionBarActivity implements RecyclerViewFragment.OnFragmentInteractionListener, MenuAdapter.OnItemClickListener {
+public class MyActivity extends ActionBarActivity implements RecyclerViewFragment.OnFragmentInteractionListener, OnItemClickListener {
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle drawerToggle;
@@ -122,7 +127,16 @@ public class MyActivity extends ActionBarActivity implements RecyclerViewFragmen
     }
 
     @Override
-    public void onFragmentInteraction(String id) {
+    public void onFragmentInteraction(View transitionView, Photo p) {
+        ActionBarActivity activity = MyActivity.this;
 
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                activity, transitionView, DetailActivity.EXTRA_IMAGE);
+
+        Intent intent = new Intent(activity, DetailActivity.class);
+        intent.putExtra(DetailActivity.EXTRA_IMAGE, p.getUrl());
+        intent.putExtra(DetailActivity.EXTRA_CAPTION, p.getTitle());
+
+        ActivityCompat.startActivity(activity, intent, options.toBundle());
     }
 }

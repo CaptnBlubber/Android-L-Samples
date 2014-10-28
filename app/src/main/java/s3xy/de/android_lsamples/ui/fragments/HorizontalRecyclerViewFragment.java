@@ -31,7 +31,6 @@ public class HorizontalRecyclerViewFragment extends RecyclerViewFragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     *
      * @return A new instance of fragment RecyclerViewFragment.
      */
     public static HorizontalRecyclerViewFragment newInstance() {
@@ -53,7 +52,7 @@ public class HorizontalRecyclerViewFragment extends RecyclerViewFragment {
         mList.setItemAnimator(new DefaultItemAnimator());
 
 
-        mPhotos = new PhotoAdapter(new ArrayList<Photo>(), R.layout.row_photo_card_horizontal, getActivity());
+        mPhotos = new PhotoAdapter(new ArrayList<Photo>(), R.layout.row_photo_card_horizontal, getActivity(), this);
 
         mList.setAdapter(mPhotos);
 
