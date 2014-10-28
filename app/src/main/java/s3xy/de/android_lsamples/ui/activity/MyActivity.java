@@ -1,5 +1,6 @@
 package s3xy.de.android_lsamples.ui.activity;
 
+import android.app.Fragment;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -7,6 +8,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -60,7 +62,12 @@ public class MyActivity extends ActionBarActivity implements RecyclerViewFragmen
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        getFragmentManager().beginTransaction().replace(R.id.content_frame, HorizontalRecyclerViewFragment.newInstance(), RecyclerViewFragment.TAG).commit();
+        Fragment f = getFragmentManager().findFragmentByTag(RecyclerViewFragment.TAG);
+        if (f == null) {
+            f = RecyclerViewFragment.newInstance();
+        }
+
+        getFragmentManager().beginTransaction().replace(R.id.content_frame, f, RecyclerViewFragment.TAG).commit();
 
     }
 
@@ -84,13 +91,38 @@ public class MyActivity extends ActionBarActivity implements RecyclerViewFragmen
         drawerToggle.onConfigurationChanged(newConfig);
     }
 
-    @Override
-    public void onFragmentInteraction(String id) {
-
-    }
 
     @Override
     public void onClick(View view, int position) {
+        Log.d("NoodleSoup", "Click at postion: " + position);
+
+        Fragment f;
+        String tag;
+
+        switch (position) {
+            case 1:
+                f = getFragmentManager().findFragmentByTag(HorizontalRecyclerViewFragment.TAG);
+                tag = HorizontalRecyclerViewFragment.TAG;
+                if (f == null) {
+                    f = HorizontalRecyclerViewFragment.newInstance();
+                }
+                break;
+            default:
+                f = getFragmentManager().findFragmentByTag(RecyclerViewFragment.TAG);
+                tag = RecyclerViewFragment.TAG;
+                if (f == null) {
+                    f = RecyclerViewFragment.newInstance();
+                }
+                break;
+        }
+
+        getFragmentManager().beginTransaction().replace(R.id.content_frame, f, tag).commit();
+
+        mDrawerLayout.closeDrawers();
+    }
+
+    @Override
+    public void onFragmentInteraction(String id) {
 
     }
 }

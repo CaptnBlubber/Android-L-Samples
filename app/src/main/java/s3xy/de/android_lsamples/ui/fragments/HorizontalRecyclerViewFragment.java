@@ -25,10 +25,12 @@ import s3xy.de.android_lsamples.api.model.Photo;
  */
 public class HorizontalRecyclerViewFragment extends RecyclerViewFragment {
 
+    public static final String TAG = "HorizontalRecyclerViewFragment";
 
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
+     *
      *
      * @return A new instance of fragment RecyclerViewFragment.
      */
