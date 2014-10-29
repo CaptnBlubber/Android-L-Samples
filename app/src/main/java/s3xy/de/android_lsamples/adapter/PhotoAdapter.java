@@ -55,7 +55,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, final int i) {
+    public void onBindViewHolder(final ViewHolder viewHolder, final int i) {
         Photo p = photos.get(i);
         Picasso.with(mContext).load(p.getUrl()).fit().into(viewHolder.mPhoto);
         viewHolder.mPhotoTitle.setText(p.getTitle());
@@ -63,7 +63,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> 
         viewHolder.mCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mListener.onClick(v, i);
+                mListener.onClick(viewHolder.mPhoto, i);
             }
         });
     }

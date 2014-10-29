@@ -24,6 +24,7 @@ import s3xy.de.android_lsamples.R;
 import s3xy.de.android_lsamples.adapter.MenuAdapter;
 import s3xy.de.android_lsamples.api.model.Photo;
 import s3xy.de.android_lsamples.interfaces.OnItemClickListener;
+import s3xy.de.android_lsamples.ui.fragments.GridRecyclerViewFragment;
 import s3xy.de.android_lsamples.ui.fragments.HorizontalRecyclerViewFragment;
 import s3xy.de.android_lsamples.ui.fragments.RecyclerViewFragment;
 
@@ -54,6 +55,7 @@ public class MyActivity extends ActionBarActivity implements RecyclerViewFragmen
 
         mMenuItems.add("CardView");
         mMenuItems.add("Horizontal List");
+        mMenuItems.add("GridView");
 
 
         // improve performance by indicating the list if fixed size.
@@ -110,6 +112,13 @@ public class MyActivity extends ActionBarActivity implements RecyclerViewFragmen
                 tag = HorizontalRecyclerViewFragment.TAG;
                 if (f == null) {
                     f = HorizontalRecyclerViewFragment.newInstance();
+                }
+                break;
+            case 2:
+                f = getFragmentManager().findFragmentByTag(GridRecyclerViewFragment.TAG);
+                tag = GridRecyclerViewFragment.TAG;
+                if (f == null) {
+                    f = GridRecyclerViewFragment.newInstance();
                 }
                 break;
             default:

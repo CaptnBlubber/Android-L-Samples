@@ -2,7 +2,7 @@ package s3xy.de.android_lsamples.ui.fragments;
 
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,14 +18,15 @@ import s3xy.de.android_lsamples.api.model.Photo;
 /**
  * A simple {@link android.app.Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link s3xy.de.android_lsamples.ui.fragments.HorizontalRecyclerViewFragment.OnFragmentInteractionListener} interface
+ * {@link s3xy.de.android_lsamples.ui.fragments.GridRecyclerViewFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link s3xy.de.android_lsamples.ui.fragments.HorizontalRecyclerViewFragment#newInstance} factory method to
+ * Use the {@link s3xy.de.android_lsamples.ui.fragments.GridRecyclerViewFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HorizontalRecyclerViewFragment extends RecyclerViewFragment {
+public class GridRecyclerViewFragment extends RecyclerViewFragment {
 
-    public static final String TAG = "HorizontalRecyclerViewFragment";
+    public static final String TAG = "GridRecyclerViewFragment";
+
 
     /**
      * Use this factory method to create a new instance of
@@ -33,8 +34,8 @@ public class HorizontalRecyclerViewFragment extends RecyclerViewFragment {
      *
      * @return A new instance of fragment RecyclerViewFragment.
      */
-    public static HorizontalRecyclerViewFragment newInstance() {
-        HorizontalRecyclerViewFragment fragment = new HorizontalRecyclerViewFragment();
+    public static GridRecyclerViewFragment newInstance() {
+        GridRecyclerViewFragment fragment = new GridRecyclerViewFragment();
         return fragment;
     }
 
@@ -45,15 +46,13 @@ public class HorizontalRecyclerViewFragment extends RecyclerViewFragment {
 
         ButterKnife.inject(this, rootView);
 
+        GridLayoutManager manager = new GridLayoutManager(getActivity(), 2);
 
-        mLinearLayoutManager = new LinearLayoutManager(getActivity());
-        mLinearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-
-        mList.setLayoutManager(mLinearLayoutManager);
+        mList.setLayoutManager(manager);
         mList.setItemAnimator(new DefaultItemAnimator());
 
 
-        mPhotos = new PhotoAdapter(new ArrayList<Photo>(), R.layout.row_photo_card_horizontal, getActivity(), this);
+        mPhotos = new PhotoAdapter(new ArrayList<Photo>(), R.layout.row_photo_card_grid, getActivity(), this);
 
         mList.setAdapter(mPhotos);
 
