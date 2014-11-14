@@ -2,6 +2,8 @@ package s3xy.de.android_lsamples;
 
 import android.app.Application;
 
+import com.crashlytics.android.Crashlytics;
+
 import timber.log.Timber;
 
 /**
@@ -19,6 +21,9 @@ public class ExampleApp extends Application {
             Timber.plant(new Timber.DebugTree());
         }
 
+        else {
+            Crashlytics.start(this);
+        }
 
 
     }

@@ -23,6 +23,7 @@
         <activity
             android:name=".ui.activity.DetailActivity"
             android:label="@string/app_name" />
+        <meta-data android:name="com.crashlytics.ApiKey" android:value="bcf3d886c8bf27ba2c6ffbc2c42c24404b998d2a"/>
     </application>
 
 </manifest>

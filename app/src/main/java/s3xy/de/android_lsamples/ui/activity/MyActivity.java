@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import com.crashlytics.android.Crashlytics;
 import java.util.ArrayList;
 
 import butterknife.ButterKnife;
@@ -44,6 +45,7 @@ public class MyActivity extends ActionBarActivity implements RecyclerViewFragmen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_my);
         ButterKnife.inject(this);
 
