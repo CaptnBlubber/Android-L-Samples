@@ -14,4 +14,5 @@ public interface FlickrApiInterface {
 
     @GET("/services/rest/?method=flickr.photos.search&extras=url_l&format=json&nojsoncallback=1")
     void getSearchResults(@Query("text") String searchQuery, Callback<SearchResult> results);
+
 }

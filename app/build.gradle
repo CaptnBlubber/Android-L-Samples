@@ -23,18 +23,6 @@ android {
     compileSdkVersion 21
     buildToolsVersion "21.0.2"
 
-
-    defaultConfig {
-        applicationId "s3xy.de.android_lsamples"
-        minSdkVersion 16
-        targetSdkVersion 21
-
-
-        versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild + getBuildNumber()
-        versionName "${buildTime()} V${versionMajor}.${versionMinor}.${versionPatch}"
-
-    }
-
     signingConfigs {
         release {
             storeFile file(System.getenv("KEYSTORE") ?: 'key.keystore')
@@ -42,6 +30,17 @@ android {
             keyAlias System.getenv("KEY_ALIAS" ?: 'default')
             keyPassword System.getenv("KEY_PASSWORD" ?: 'default')
         }
+    }
+
+    defaultConfig {
+        applicationId "s3xy.de.android_lsamples"
+        minSdkVersion 14
+        targetSdkVersion 21
+
+
+        versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild + getBuildNumber()
+        versionName "${buildTime()} V${versionMajor}.${versionMinor}.${versionPatch}"
+
     }
 
     lintOptions {
@@ -71,14 +70,17 @@ dependencies {
     compile 'com.android.support:support-v13:21.0.0'
     compile "com.android.support:appcompat-v7:21.0.0"
 
-    compile 'com.jakewharton:butterknife:5.1.2'
+    compile 'com.jakewharton:butterknife:6.0.0'
+    compile 'com.nineoldandroids:library:2.4.0'
 
     compile 'com.google.code.gson:gson:2.3'
     compile 'com.squareup.retrofit:retrofit:1.6.1'
     compile 'com.squareup.okhttp:okhttp:2.0.0'
     compile 'com.squareup.okio:okio:1.0.0'
     compile 'com.squareup.okhttp:okhttp-urlconnection:2.0.0'
-    compile 'com.squareup.picasso:picasso:2.3.4'
+    compile 'com.squareup.picasso:picasso:2.4.0'
+    
+    compile 'com.jakewharton.timber:timber:2.5.0'
 
 
 }

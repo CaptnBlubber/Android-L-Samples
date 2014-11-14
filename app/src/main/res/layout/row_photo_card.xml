@@ -4,36 +4,64 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="5dp"
     android:background="?android:selectableItemBackground"
     app:cardCornerRadius="2dp"
     app:cardPreventCornerOverlap="true">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/photo"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_centerInParent="true"
-            android:scaleType="centerCrop" />
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/photo"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_centerInParent="true"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/photoTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/photo"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:background="@color/photo_tint"
+                android:clickable="true"
+                android:ellipsize="end"
+                android:focusable="true"
+                android:maxLines="2"
+                android:textColor="@android:color/white"
+                android:gravity="left"
+                android:padding="16dp"
+                style="@style/TextAppearance.AppCompat.Display1"
+                android:text="Lorem Ipsum" />
+        </RelativeLayout>
 
         <TextView
-            android:id="@+id/photoTitle"
+            android:id="@+id/photographer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/photo"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:background="@color/photo_tint"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:textColor="@android:color/white"
-            android:textSize="24sp" />
+            android:textColor="@android:color/black"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:padding="16dp" />
 
-    </RelativeLayout>
+        <s3xy.de.android_lsamples.ui.views.ButtonFlat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/black"
+            android:text="Share"
+            android:textSize="14sp"
+            android:layout_margin="10sp" />
+
+    </LinearLayout>
+
+
 </android.support.v7.widget.CardView>

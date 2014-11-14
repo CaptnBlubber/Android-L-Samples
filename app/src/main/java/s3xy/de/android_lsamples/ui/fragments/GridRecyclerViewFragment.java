@@ -2,7 +2,7 @@ package s3xy.de.android_lsamples.ui.fragments;
 
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +10,14 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import butterknife.ButterKnife;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 import s3xy.de.android_lsamples.R;
 import s3xy.de.android_lsamples.adapter.PhotoAdapter;
+import s3xy.de.android_lsamples.api.SampleClient;
 import s3xy.de.android_lsamples.api.model.Photo;
+import s3xy.de.android_lsamples.api.model.SearchResult;
 
 
 /**
@@ -46,7 +51,16 @@ public class GridRecyclerViewFragment extends RecyclerViewFragment {
 
         ButterKnife.inject(this, rootView);
 
-        GridLayoutManager manager = new GridLayoutManager(getActivity(), 2);
+        StaggeredGridLayoutManager manager;
+
+        if (getResources().getConfiguration().orientation == 1) {
+            manager = new StaggeredGridLayoutManager(getResources().getInteger(R.integer.grid_size), StaggeredGridLayoutManager.HORIZONTAL);
+        } else {
+            manager = new StaggeredGridLayoutManager(getResources().getInteger(R.integer.grid_size), StaggeredGridLayoutManager.VERTICAL);
+        }
+
+
+//        GridLayoutManager manager = new GridLayoutManager(getActivity(), 2);
 
         mList.setLayoutManager(manager);
         mList.setItemAnimator(new DefaultItemAnimator());
@@ -57,5 +71,23 @@ public class GridRecyclerViewFragment extends RecyclerViewFragment {
         mList.setAdapter(mPhotos);
 
         return rootView;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        SampleClient.getFlickrApiClient(getActivity()).getSearchResults("panda", new Callback<SearchResult>() {
+            @Override
+            public void success(SearchResult searchResult, Response response) {
+                mPhotos.getPhotos().addAll(searchResult.getPhotos().getPhoto());
+                mPhotos.notifyDataSetChanged();
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+
+            }
+        });
     }
 }

@@ -10,9 +10,14 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import butterknife.ButterKnife;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 import s3xy.de.android_lsamples.R;
 import s3xy.de.android_lsamples.adapter.PhotoAdapter;
+import s3xy.de.android_lsamples.api.SampleClient;
 import s3xy.de.android_lsamples.api.model.Photo;
+import s3xy.de.android_lsamples.api.model.SearchResult;
 
 
 /**
@@ -58,5 +63,23 @@ public class HorizontalRecyclerViewFragment extends RecyclerViewFragment {
         mList.setAdapter(mPhotos);
 
         return rootView;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        SampleClient.getFlickrApiClient(getActivity()).getSearchResults("black", new Callback<SearchResult>() {
+            @Override
+            public void success(SearchResult searchResult, Response response) {
+                mPhotos.getPhotos().addAll(searchResult.getPhotos().getPhoto());
+                mPhotos.notifyDataSetChanged();
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+
+            }
+        });
     }
 }
