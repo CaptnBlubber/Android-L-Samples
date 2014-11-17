@@ -1,5 +1,6 @@
 package s3xy.de.android_lsamples.ui.views;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
@@ -126,12 +127,15 @@ public class ButtonFloat extends Button {
         return drawableIcon;
     }
 
+    @TargetApi(android.os.Build.VERSION_CODES.JELLY_BEAN)
     public void setDrawableIcon(Drawable drawableIcon) {
         this.drawableIcon = drawableIcon;
-        try {
-            icon.setBackground(drawableIcon);
-        } catch (NoSuchMethodError e) {
-            icon.setBackgroundDrawable(drawableIcon);
+
+        int sdk = android.os.Build.VERSION.SDK_INT;
+        if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            setBackgroundDrawable(drawableIcon);
+        } else {
+            setBackground(drawableIcon);
         }
     }
 

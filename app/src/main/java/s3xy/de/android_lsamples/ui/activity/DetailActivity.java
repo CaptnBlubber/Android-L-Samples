@@ -37,6 +37,7 @@ public class DetailActivity extends ActionBarActivity {
         setContentView(R.layout.activity_detail);
         ButterKnife.inject(this);
 
+
         ViewCompat.setTransitionName(mImage, EXTRA_IMAGE);
         Picasso.with(this).load(getIntent().getStringExtra(EXTRA_IMAGE)).into(mImage);
 

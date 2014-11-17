@@ -16,7 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import com.crashlytics.android.Crashlytics;
 import java.util.ArrayList;
 
 import butterknife.ButterKnife;
@@ -32,6 +31,7 @@ import s3xy.de.android_lsamples.ui.fragments.RecyclerViewFragment;
 
 public class MyActivity extends ActionBarActivity implements RecyclerViewFragment.OnFragmentInteractionListener, OnItemClickListener {
 
+    private static final String LAST_FRAGMENT = "KEY_LAST_FRAGMENT";
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle drawerToggle;
     @InjectView(R.id.content_frame)
@@ -41,6 +41,7 @@ public class MyActivity extends ActionBarActivity implements RecyclerViewFragmen
     @InjectView(R.id.drawerLayout)
     DrawerLayout mDrawerLayout;
     private ArrayList<String> mMenuItems;
+    private String mCurrentFragmentTag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,12 +72,19 @@ public class MyActivity extends ActionBarActivity implements RecyclerViewFragmen
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        Fragment f = getFragmentManager().findFragmentByTag(RecyclerViewFragment.TAG);
+
+        if (savedInstanceState == null) {
+            mCurrentFragmentTag = RecyclerViewFragment.TAG;
+        } else {
+            mCurrentFragmentTag = savedInstanceState.getString(LAST_FRAGMENT, RecyclerViewFragment.TAG);
+        }
+
+        Fragment f = getFragmentManager().findFragmentByTag(mCurrentFragmentTag);
         if (f == null) {
             f = RecyclerViewFragment.newInstance();
         }
 
-        getFragmentManager().beginTransaction().replace(R.id.content_frame, f, RecyclerViewFragment.TAG).commit();
+        getFragmentManager().beginTransaction().replace(R.id.content_frame, f, mCurrentFragmentTag).commit();
 
     }
 
@@ -100,6 +108,12 @@ public class MyActivity extends ActionBarActivity implements RecyclerViewFragmen
         drawerToggle.onConfigurationChanged(newConfig);
     }
 
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(LAST_FRAGMENT, mCurrentFragmentTag);
+    }
 
     @Override
     public void onClick(View view, int position) {
@@ -132,6 +146,7 @@ public class MyActivity extends ActionBarActivity implements RecyclerViewFragmen
                 break;
         }
 
+        mCurrentFragmentTag = tag;
         getFragmentManager().beginTransaction().replace(R.id.content_frame, f, tag).commit();
 
         mDrawerLayout.closeDrawers();

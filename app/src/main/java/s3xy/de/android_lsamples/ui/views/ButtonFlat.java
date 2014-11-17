@@ -51,9 +51,9 @@ public class ButtonFlat extends Button {
 			textButton.setLayoutParams(params);
 			addView(textButton);
 		}
-		int bacgroundColor = attrs.getAttributeResourceValue(ANDROIDXML,"background",-1);
-		if(bacgroundColor != -1){
-			setBackgroundColor(getResources().getColor(bacgroundColor));
+		int backgroundColor = attrs.getAttributeResourceValue(ANDROIDXML,"background",-1);
+		if(backgroundColor != -1){
+			setBackgroundColor(getResources().getColor(backgroundColor));
 		}else{
 			// Color by hexadecimal
 			String background = attrs.getAttributeValue(ANDROIDXML,"background");
