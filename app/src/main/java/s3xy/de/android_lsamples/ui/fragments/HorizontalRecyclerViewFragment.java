@@ -28,7 +28,7 @@ import s3xy.de.android_lsamples.api.model.SearchResult;
  * Use the {@link s3xy.de.android_lsamples.ui.fragments.HorizontalRecyclerViewFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HorizontalRecyclerViewFragment extends RecyclerViewFragment {
+public class HorizontalRecyclerViewFragment extends CardViewFragment {
 
     public static final String TAG = "HorizontalRecyclerViewFragment";
 

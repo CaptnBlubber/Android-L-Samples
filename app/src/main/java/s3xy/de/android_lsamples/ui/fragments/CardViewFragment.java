@@ -28,12 +28,12 @@ import s3xy.de.android_lsamples.interfaces.OnItemClickListener;
 /**
  * A simple {@link android.app.Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link s3xy.de.android_lsamples.ui.fragments.RecyclerViewFragment.OnFragmentInteractionListener} interface
+ * {@link CardViewFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link s3xy.de.android_lsamples.ui.fragments.RecyclerViewFragment#newInstance} factory method to
+ * Use the {@link CardViewFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RecyclerViewFragment extends Fragment implements OnItemClickListener {
+public class CardViewFragment extends Fragment implements OnItemClickListener {
     public static final String TAG = "RecyclerViewFragment";
     protected PhotoAdapter mPhotos;
     protected LinearLayoutManager mLinearLayoutManager;
@@ -41,7 +41,7 @@ public class RecyclerViewFragment extends Fragment implements OnItemClickListene
     RecyclerView mList;
     private OnFragmentInteractionListener mListener;
 
-    public RecyclerViewFragment() {
+    public CardViewFragment() {
         // Required empty public constructor
     }
 
@@ -51,8 +51,8 @@ public class RecyclerViewFragment extends Fragment implements OnItemClickListene
      *
      * @return A new instance of fragment RecyclerViewFragment.
      */
-    public static RecyclerViewFragment newInstance() {
-        RecyclerViewFragment fragment = new RecyclerViewFragment();
+    public static CardViewFragment newInstance() {
+        CardViewFragment fragment = new CardViewFragment();
         return fragment;
     }
 
@@ -64,11 +64,11 @@ public class RecyclerViewFragment extends Fragment implements OnItemClickListene
 
         ButterKnife.inject(this, rootView);
 
-        mLinearLayoutManager = new LinearLayoutManager(getActivity());
+        mLinearLayoutManager =
+                new LinearLayoutManager(getActivity());
 
         mList.setLayoutManager(mLinearLayoutManager);
         mList.setItemAnimator(new DefaultItemAnimator());
-
 
         mPhotos = new PhotoAdapter(new ArrayList<Photo>(), getActivity(), this);
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardView"
     android:layout_width="match_parent"
@@ -8,7 +9,9 @@
     android:layout_margin="5dp"
     android:background="?android:selectableItemBackground"
     app:cardCornerRadius="2dp"
-    app:cardPreventCornerOverlap="true">
+    app:cardElevation="5dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,12 +25,13 @@
             <ImageView
                 android:id="@+id/photo"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="@dimen/size_image_card"
                 android:layout_centerInParent="true"
                 android:scaleType="centerCrop" />
 
             <TextView
                 android:id="@+id/photoTitle"
+                style="@style/TextAppearance.AppCompat.Display1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/photo"
@@ -37,31 +41,34 @@
                 android:clickable="true"
                 android:ellipsize="end"
                 android:focusable="true"
-                android:maxLines="2"
-                android:textColor="@android:color/white"
                 android:gravity="left"
+                android:maxLines="2"
                 android:padding="16dp"
-                style="@style/TextAppearance.AppCompat.Display1"
-                android:text="Lorem Ipsum" />
+                android:text="Lorem Ipsum"
+                android:textColor="@android:color/white" />
         </RelativeLayout>
 
         <TextView
             android:id="@+id/photographer"
+            style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
-            style="@style/TextAppearance.AppCompat.Title"
-            android:padding="16dp" />
+            android:padding="16dp"
+            android:textColor="@android:color/black" />
 
         <s3xy.de.android_lsamples.ui.views.ButtonFlat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="10sp"
             android:background="@android:color/black"
             android:text="Share"
-            android:textSize="14sp"
-            android:layout_margin="10sp" />
+            android:textSize="14sp" />
 
     </LinearLayout>
 
 
 </android.support.v7.widget.CardView>
+
+
+
+

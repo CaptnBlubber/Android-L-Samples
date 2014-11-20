@@ -49,10 +49,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         return mDataset.size();
     }
 
-
-    /**
-     * Custom viewholder for our planet views.
-     */
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView mTextView;
 

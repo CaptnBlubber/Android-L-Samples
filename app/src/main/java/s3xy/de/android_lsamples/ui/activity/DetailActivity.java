@@ -3,6 +3,7 @@ package s3xy.de.android_lsamples.ui.activity;
 import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -29,6 +30,8 @@ public class DetailActivity extends ActionBarActivity {
     ImageView mImage;
     @InjectView(R.id.text)
     TextView mText;
+    @InjectView(R.id.my_awesome_toolbar)
+    Toolbar mMyAwesomeToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +40,14 @@ public class DetailActivity extends ActionBarActivity {
         setContentView(R.layout.activity_detail);
         ButterKnife.inject(this);
 
-
         ViewCompat.setTransitionName(mImage, EXTRA_IMAGE);
+
         Picasso.with(this).load(getIntent().getStringExtra(EXTRA_IMAGE)).into(mImage);
 
         mText.setText(getIntent().getStringExtra(EXTRA_CAPTION));
+
+        setSupportActionBar(mMyAwesomeToolbar);
+
     }
 
 

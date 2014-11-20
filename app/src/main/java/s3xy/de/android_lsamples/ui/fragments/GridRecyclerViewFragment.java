@@ -28,7 +28,7 @@ import s3xy.de.android_lsamples.api.model.SearchResult;
  * Use the {@link s3xy.de.android_lsamples.ui.fragments.GridRecyclerViewFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class GridRecyclerViewFragment extends RecyclerViewFragment {
+public class GridRecyclerViewFragment extends CardViewFragment {
 
     public static final String TAG = "GridRecyclerViewFragment";
 
@@ -58,9 +58,6 @@ public class GridRecyclerViewFragment extends RecyclerViewFragment {
         } else {
             manager = new StaggeredGridLayoutManager(getResources().getInteger(R.integer.grid_size), StaggeredGridLayoutManager.VERTICAL);
         }
-
-
-//        GridLayoutManager manager = new GridLayoutManager(getActivity(), 2);
 
         mList.setLayoutManager(manager);
         mList.setItemAnimator(new DefaultItemAnimator());

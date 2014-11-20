@@ -36,7 +36,7 @@ def getBuildNumber() {
 
 android {
     compileSdkVersion 21
-    buildToolsVersion "21.0.2"
+    buildToolsVersion "21.1.1"
 
     signingConfigs {
         release {
@@ -45,10 +45,11 @@ android {
             keyAlias System.getenv("KEY_ALIAS" ?: 'default')
             keyPassword System.getenv("KEY_PASSWORD" ?: 'default')
         }
+
     }
 
     defaultConfig {
-        applicationId "s3xy.de.android_lsamples"
+        applicationId "s3xy.de.lsamples"
         minSdkVersion 14
         targetSdkVersion 21
 
