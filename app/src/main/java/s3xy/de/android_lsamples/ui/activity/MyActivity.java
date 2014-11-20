@@ -3,6 +3,7 @@ package s3xy.de.android_lsamples.ui.activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -100,6 +101,16 @@ public class MyActivity extends ActionBarActivity implements CardViewFragment.On
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+        mChosenAccountContentView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(getString(R.string.github_url)));
+                startActivity(i);
+            }
+        });
 
 
         if (savedInstanceState == null) {
