@@ -1,18 +1,23 @@
 package s3xy.de.android_lsamples.ui.activity;
 
 import android.app.Fragment;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -127,6 +132,21 @@ public class MyActivity extends ActionBarActivity implements CardViewFragment.On
         getFragmentManager().beginTransaction().replace(R.id.content_frame, f, mCurrentFragmentTag).commit();
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.my, menu);
+
+        SearchManager SManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        MenuItem searchMenuItem = menu.findItem(R.id.action_search);
+        SearchView searchViewAction = (SearchView) MenuItemCompat.getActionView(searchMenuItem);
+        searchViewAction.setSearchableInfo(SManager.getSearchableInfo(getComponentName()));
+        searchViewAction.setIconifiedByDefault(true);
+
+        return true;
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

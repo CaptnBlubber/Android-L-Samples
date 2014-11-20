@@ -40,13 +40,12 @@ public class DetailActivity extends ActionBarActivity {
         setContentView(R.layout.activity_detail);
         ButterKnife.inject(this);
 
+        setSupportActionBar(mMyAwesomeToolbar);
+
         ViewCompat.setTransitionName(mImage, EXTRA_IMAGE);
 
         Picasso.with(this).load(getIntent().getStringExtra(EXTRA_IMAGE)).into(mImage);
-
         mText.setText(getIntent().getStringExtra(EXTRA_CAPTION));
-
-        setSupportActionBar(mMyAwesomeToolbar);
 
     }
 
