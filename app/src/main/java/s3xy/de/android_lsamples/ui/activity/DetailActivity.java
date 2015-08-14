@@ -2,7 +2,7 @@ package s3xy.de.android_lsamples.ui.activity;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import s3xy.de.android_lsamples.R;
 
 /**
@@ -20,17 +20,17 @@ import s3xy.de.android_lsamples.R;
  * <p/>
  * Created by arueggeberg on 28.10.14.
  */
-public class DetailActivity extends ActionBarActivity {
+public class DetailActivity extends AppCompatActivity {
 
 
     public static final String EXTRA_IMAGE = "DetailActivity.EXTRA_IMAGE";
     public static final String EXTRA_CAPTION = "DetailActivity.EXTRA_CAPTION";
 
-    @InjectView(R.id.image)
+    @Bind(R.id.image)
     ImageView mImage;
-    @InjectView(R.id.text)
+    @Bind(R.id.text)
     TextView mText;
-    @InjectView(R.id.my_awesome_toolbar)
+    @Bind(R.id.my_awesome_toolbar)
     Toolbar mMyAwesomeToolbar;
 
     @Override
@@ -38,7 +38,7 @@ public class DetailActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_detail);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         setSupportActionBar(mMyAwesomeToolbar);
 

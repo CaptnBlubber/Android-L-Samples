@@ -11,8 +11,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -30,8 +30,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import s3xy.de.android_lsamples.R;
 import s3xy.de.android_lsamples.adapter.MenuAdapter;
 import s3xy.de.android_lsamples.api.model.Photo;
@@ -42,37 +42,37 @@ import s3xy.de.android_lsamples.ui.fragments.HorizontalRecyclerViewFragment;
 import s3xy.de.android_lsamples.ui.views.BezelImageView;
 
 
-public class MyActivity extends ActionBarActivity implements CardViewFragment.OnFragmentInteractionListener, OnItemClickListener {
+public class MyActivity extends AppCompatActivity implements CardViewFragment.OnFragmentInteractionListener, OnItemClickListener {
 
     private static final String LAST_FRAGMENT = "KEY_LAST_FRAGMENT";
 
     ActionBarDrawerToggle drawerToggle;
-    @InjectView(R.id.content_frame)
+    @Bind(R.id.content_frame)
     RelativeLayout mContentFrame;
 
-    @InjectView(R.id.left_drawer)
+    @Bind(R.id.left_drawer)
     LinearLayout mLeftDrawer;
 
 
-    @InjectView(R.id.drawerLayout)
+    @Bind(R.id.drawerLayout)
     DrawerLayout mDrawerLayout;
 
-    @InjectView(R.id.navdrawer_items_list)
+    @Bind(R.id.navdrawer_items_list)
     RecyclerView mNavDrawerList;
-    @InjectView(R.id.profile_cover_image)
+    @Bind(R.id.profile_cover_image)
     ImageView mProfileCoverImage;
-    @InjectView(R.id.profile_image)
+    @Bind(R.id.profile_image)
     BezelImageView mProfileImage;
 
-    @InjectView(R.id.profile_email_text)
+    @Bind(R.id.profile_email_text)
     TextView mProfileEmailText;
-    @InjectView(R.id.profile_name_text)
+    @Bind(R.id.profile_name_text)
     TextView mProfileNameText;
-    @InjectView(R.id.chosen_account_content_view)
+    @Bind(R.id.chosen_account_content_view)
     RelativeLayout mChosenAccountContentView;
-    @InjectView(R.id.chosen_account_view)
+    @Bind(R.id.chosen_account_view)
     FrameLayout mChosenAccountView;
-    @InjectView(R.id.account_list)
+    @Bind(R.id.account_list)
     LinearLayout mAccountList;
 
     private ArrayList<String> mMenuItems;
@@ -82,7 +82,7 @@ public class MyActivity extends ActionBarActivity implements CardViewFragment.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         drawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.app_name, R.string.app_name) {
         };
@@ -214,7 +214,7 @@ public class MyActivity extends ActionBarActivity implements CardViewFragment.On
 
     @Override
     public void onFragmentInteraction(View transitionView, Photo p) {
-        ActionBarActivity activity = MyActivity.this;
+        AppCompatActivity activity = MyActivity.this;
 
         ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 activity, transitionView, DetailActivity.EXTRA_IMAGE);
