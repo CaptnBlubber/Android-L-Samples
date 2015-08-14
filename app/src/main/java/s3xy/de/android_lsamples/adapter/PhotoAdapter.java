@@ -1,6 +1,7 @@
 package s3xy.de.android_lsamples.adapter;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,9 +14,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
-import butterknife.Optional;
 import s3xy.de.android_lsamples.R;
 import s3xy.de.android_lsamples.api.model.Photo;
 import s3xy.de.android_lsamples.interfaces.OnItemClickListener;
@@ -63,10 +63,6 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> 
         Timber.d("onBindViewHolder");
         Photo p = photos.get(i);
 
-//        if (viewHolder.mPhoto.getDrawable() == null) {
-//            Picasso.with(mContext).load(p.getUrl()).error(android.R.drawable.stat_notify_error).into(viewHolder.mPhoto);
-//        }
-
         mPicasso.load(p.getUrl()).error(android.R.drawable.stat_notify_error).placeholder(android.R.drawable.stat_notify_sync).into(viewHolder.mPhoto);
 
         viewHolder.mPhotoTitle.setText(p.getId());
@@ -92,20 +88,20 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        @InjectView(R.id.photo)
+        @Bind(R.id.photo)
         ImageView mPhoto;
-        @InjectView(R.id.photoTitle)
+        @Bind(R.id.photoTitle)
         TextView mPhotoTitle;
-        @InjectView(R.id.cardView)
+        @Bind(R.id.cardView)
         CardView mCardView;
 
-        @Optional
-        @InjectView(R.id.photographer)
+        @Nullable
+        @Bind(R.id.photographer)
         TextView mPhotographerTitle;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.inject(this, itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

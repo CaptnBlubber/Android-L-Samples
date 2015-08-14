@@ -12,8 +12,8 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -37,7 +37,7 @@ public class CardViewFragment extends Fragment implements OnItemClickListener {
     public static final String TAG = "RecyclerViewFragment";
     protected PhotoAdapter mPhotos;
     protected LinearLayoutManager mLinearLayoutManager;
-    @InjectView(R.id.list)
+    @Bind(R.id.list)
     RecyclerView mList;
     private OnFragmentInteractionListener mListener;
 
@@ -62,7 +62,7 @@ public class CardViewFragment extends Fragment implements OnItemClickListener {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_recycler_view, container, false);
 
-        ButterKnife.inject(this, rootView);
+        ButterKnife.bind(this, rootView);
 
         mLinearLayoutManager =
                 new LinearLayoutManager(getActivity());
@@ -122,7 +122,7 @@ public class CardViewFragment extends Fragment implements OnItemClickListener {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.reset(this);
+        ButterKnife.unbind(this);
     }
 
     /**

@@ -49,7 +49,7 @@ public class GridRecyclerViewFragment extends CardViewFragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_recycler_view, container, false);
 
-        ButterKnife.inject(this, rootView);
+        ButterKnife.bind(this, rootView);
 
         StaggeredGridLayoutManager manager;
 

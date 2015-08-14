@@ -35,8 +35,8 @@ def getBuildNumber() {
 
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.1"
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
 
     signingConfigs {
         release {
@@ -51,7 +51,7 @@ android {
     defaultConfig {
         applicationId "s3xy.de.lsamples"
         minSdkVersion 14
-        targetSdkVersion 21
+        targetSdkVersion 22
 
 
         versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild + getBuildNumber()
@@ -66,7 +66,6 @@ android {
 
     buildTypes {
         release {
-            runProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
@@ -76,28 +75,28 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile 'com.android.support:support-v4:21.0.0'
-    compile 'com.android.support:cardview-v7:21.0.0'
-    compile 'com.android.support:gridlayout-v7:21.0.0'
-    compile 'com.android.support:mediarouter-v7:21.0.0'
-    compile 'com.android.support:palette-v7:21.0.0'
-    compile 'com.android.support:recyclerview-v7:21.0.0'
-    compile 'com.android.support:support-annotations:21.0.0'
-    compile 'com.android.support:support-v13:21.0.0'
-    compile "com.android.support:appcompat-v7:21.0.0"
+    compile 'com.android.support:support-v4:22.2.0'
+    compile 'com.android.support:cardview-v7:22.2.0'
+    compile 'com.android.support:gridlayout-v7:22.2.0'
+    compile 'com.android.support:mediarouter-v7:22.2.0'
+    compile 'com.android.support:palette-v7:22.2.0'
+    compile 'com.android.support:recyclerview-v7:22.2.0'
+    compile 'com.android.support:support-annotations:22.2.0'
+    compile 'com.android.support:support-v13:22.2.0'
+    compile "com.android.support:appcompat-v7:22.2.0"
 
-    compile 'com.jakewharton:butterknife:6.0.0'
+    compile 'com.jakewharton:butterknife:7.0.0'
     compile 'com.nineoldandroids:library:2.4.0'
-
-    compile 'com.google.code.gson:gson:2.3'
-    compile 'com.squareup.retrofit:retrofit:1.6.1'
-    compile 'com.squareup.okhttp:okhttp:2.0.0'
-    compile 'com.squareup.okio:okio:1.0.0'
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
+    compile 'com.squareup.okhttp:okhttp:2.4.0'
+    compile 'com.squareup.okio:okio:1.4.0'
     compile 'com.squareup.okhttp:okhttp-urlconnection:2.0.0'
-    compile 'com.squareup.picasso:picasso:2.4.0'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.jakewharton.timber:timber:3.1.0'
 
-    compile 'com.jakewharton.timber:timber:2.5.0'
     compile 'com.crashlytics.android:crashlytics:1.+'
+
+    compile 'com.google.code.gson:gson:2.3.1'
 
 
 }

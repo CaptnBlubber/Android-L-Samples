@@ -6,8 +6,6 @@ import android.webkit.WebView;
 import com.squareup.okhttp.Cache;
 import com.squareup.okhttp.OkHttpClient;
 
-import java.io.IOException;
-
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
 import retrofit.client.Client;
@@ -41,7 +39,7 @@ public class SampleClient {
             OkHttpClient httpClient = new OkHttpClient();
             try {
                 httpClient.setCache(new Cache(ctx.getCacheDir(), 50 * 1024 * 1024));
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             Client client = new OkClient(httpClient);
